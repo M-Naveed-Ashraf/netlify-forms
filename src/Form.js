@@ -25,9 +25,15 @@ export default function Form() {
           </>
         )
     }
+
+    const encode = (data) => {
+        return Object.keys(data)
+            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+            .join("&");
+    }
     
     const buttonClick = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         // Validation
         const validate = () => {
         // Page 0
@@ -40,10 +46,21 @@ export default function Form() {
         const submit = () => {
         supabase.from('gaperform').upsert(userdata).then(res => setUserdata( {...userdata, id: (res?.data && res?.data?.length) ? res.data[0].id : ''} ));
         // Page switching
-        setPage(2);
+        // setPage(2);
         // Sending email notification
         sendEmail(emailMessage);
         }
+
+        fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "hireCandidates", ...userdata })
+        })
+        .then(() => alert("Success!"))
+        .catch(error => alert(error));
+
+        e.preventDefault();
+
         validate();
     }
 
@@ -213,7 +230,6 @@ export default function Form() {
         {page === 0 && validationCheck && <div className="text-red-500">{validationCheck}</div>}
         <button
             type="submit"
-            onClick={buttonClick}
             className="flex my-4 py-2 omd:py-3 px-6 omd:px-9 text-xl w-fit font-semibold leading-normal text-[#ffffff] bg-[#0B5fff] rounded-[4px] cursor-pointer hover:bg-blue-500 "
         >
             <span className="hidden md:inline-flex">Schedule a call</span>
