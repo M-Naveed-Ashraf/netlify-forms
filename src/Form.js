@@ -105,13 +105,13 @@ export default function Form() {
         <HiddenFields />   
         <div className="col-span-12 md:col-span-5 space-y-7">
             <div>
-            <label htmlFor="name" className="font-semibold">Enter your full name</label>
+            <label htmlFor="fullname" className="font-semibold">Enter your full name</label>
             <input
                 className="w-full h-[61px] mt-3 border-[1.5px] border-[#DADADA] rounded-lg md:text-lg md:font-medium focus:ring-0 focus:font-semibold focus:placeholder:text-blue-500"
                 type="text"
-                autoComplete="name"
-                id="name"
-                name="name"
+                autoComplete="fullname"
+                id="fullname"
+                name="fullname"
                 value={userdata.fullname}
                 onKeyDown={handleEnter} 
                 onChange={e => setUserdata({ ...userdata, fullname: e.target.value})}
@@ -143,12 +143,12 @@ export default function Form() {
             />
             </div>
             <div className="md:hidden">
-            <label htmlFor="more-info" className="font-semibold">Do you want to add anything else?</label>
+            <label htmlFor="moreinfo" className="font-semibold">Do you want to add anything else?</label>
             <textarea
                 className="w-full h-[61px] mt-3 border-[1.5px] border-[#DADADA] rounded-lg md:text-xl md:font-medium focus:ring-0 focus:font-semibold focus:placeholder:text-blue-500"
                 type="text"
-                id="more-info"
-                name="more-info"
+                id="moreinfo"
+                name="moreinfo"
                 rows="1"
                 value={userdata.moreinfo}
                 onKeyDown={handleEnter} 
@@ -157,12 +157,12 @@ export default function Form() {
             </div>
         </div>
         <div className="hidden md:block col-span-7">
-            <label htmlFor="more-info" className="font-semibold">Do you want to add anything else?</label>
+            <label htmlFor="moreinfo" className="font-semibold">Do you want to add anything else?</label>
             <textarea
             className="w-full mt-3 border-[1.5px] border-[#DADADA] rounded-lg md:text-xl md:font-medium focus:ring-0 focus:font-semibold focus:placeholder:text-blue-500"
             type="text"
-            id="more-info"
-            name="more-info"
+            id="moreinfo"
+            name="moreinfo"
             rows="6"
             value={userdata.moreinfo}
             onKeyDown={handleEnter} 
